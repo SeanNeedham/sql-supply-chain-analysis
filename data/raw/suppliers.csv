@@ -1,0 +1,49 @@
+supplier_id,supplier_name,supplier_region,agreed_lead_time_days,target_otif_pct
+S001,Supplier 001,UK,21,0.9
+S002,Supplier 002,Asia,23,0.94
+S003,Supplier 003,Asia,23,0.94
+S004,Supplier 004,Eastern Europe,9,0.88
+S005,Supplier 005,Eastern Europe,13,0.95
+S006,Supplier 006,North America,16,0.88
+S007,Supplier 007,UK,16,0.95
+S008,Supplier 008,Asia,6,0.88
+S009,Supplier 009,Western Europe,18,0.94
+S010,Supplier 010,UK,8,0.94
+S011,Supplier 011,Eastern Europe,22,0.94
+S012,Supplier 012,North America,21,0.94
+S013,Supplier 013,Asia,27,0.92
+S014,Supplier 014,Asia,22,0.94
+S015,Supplier 015,Asia,13,0.9
+S016,Supplier 016,Asia,28,0.94
+S017,Supplier 017,Eastern Europe,14,0.92
+S018,Supplier 018,UK,12,0.92
+S019,Supplier 019,North America,26,0.92
+S020,Supplier 020,Eastern Europe,13,0.92
+S021,Supplier 021,Eastern Europe,6,0.88
+S022,Supplier 022,Western Europe,16,0.88
+S023,Supplier 023,UK,24,0.9
+S024,Supplier 024,North America,9,0.88
+S025,Supplier 025,Asia,16,0.92
+S026,Supplier 026,Asia,8,0.94
+S027,Supplier 027,Eastern Europe,21,0.94
+S028,Supplier 028,North America,16,0.92
+S029,Supplier 029,Eastern Europe,12,0.95
+S030,Supplier 030,Eastern Europe,10,0.92
+S031,Supplier 031,Eastern Europe,18,0.88
+S032,Supplier 032,Western Europe,21,0.94
+S033,Supplier 033,UK,27,0.92
+S034,Supplier 034,Eastern Europe,15,0.94
+S035,Supplier 035,North America,8,0.92
+S036,Supplier 036,UK,24,0.92
+S037,Supplier 037,North America,20,0.88
+S038,Supplier 038,North America,21,0.92
+S039,Supplier 039,Western Europe,7,0.94
+S040,Supplier 040,Asia,12,0.9
+S041,Supplier 041,UK,23,0.94
+S042,Supplier 042,Asia,24,0.88
+S043,Supplier 043,Asia,15,0.9
+S044,Supplier 044,Western Europe,24,0.92
+S045,Supplier 045,UK,25,0.95
+S046,Supplier 046,North America,14,0.9
+S047,Supplier 047,Eastern Europe,26,0.9
+S048,Supplier 048,North America,11,0.92

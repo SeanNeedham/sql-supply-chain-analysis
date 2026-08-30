@@ -1,0 +1,121 @@
+part_id,part_name,category,unit_cost_gbp,criticality
+P0001,Component 0001,Automation,378.74,Medium
+P0002,Component 0002,Automation,227.1,Medium
+P0003,Component 0003,Packaging,385.12,High
+P0004,Component 0004,Electrical,17.27,Low
+P0005,Component 0005,Cold Chain,623.17,Medium
+P0006,Component 0006,Packaging,314.79,Low
+P0007,Component 0007,Automation,509.32,Critical
+P0008,Component 0008,Electrical,56.07,High
+P0009,Component 0009,Automation,317.61,Critical
+P0010,Component 0010,Electrical,320.23,Critical
+P0011,Component 0011,Mechanical,609.74,Critical
+P0012,Component 0012,Consumables,372.69,Low
+P0013,Component 0013,Packaging,309.08,Critical
+P0014,Component 0014,Consumables,175.37,Low
+P0015,Component 0015,Consumables,217.19,Medium
+P0016,Component 0016,Cold Chain,339.64,High
+P0017,Component 0017,Automation,286.7,Medium
+P0018,Component 0018,Consumables,16.49,Low
+P0019,Component 0019,Mechanical,537.52,Low
+P0020,Component 0020,Mechanical,582.76,Critical
+P0021,Component 0021,Mechanical,93.31,Medium
+P0022,Component 0022,Cold Chain,361.24,Medium
+P0023,Component 0023,Electrical,72.8,Critical
+P0024,Component 0024,Electrical,437.78,Low
+P0025,Component 0025,Mechanical,184.6,Critical
+P0026,Component 0026,Packaging,429.48,Critical
+P0027,Component 0027,Packaging,473.23,High
+P0028,Component 0028,Packaging,500.2,Low
+P0029,Component 0029,Cold Chain,72.26,Low
+P0030,Component 0030,Cold Chain,595.62,Medium
+P0031,Component 0031,Cold Chain,151.56,High
+P0032,Component 0032,Mechanical,26.72,Low
+P0033,Component 0033,Cold Chain,361.77,Medium
+P0034,Component 0034,Packaging,242.67,Low
+P0035,Component 0035,Automation,539.79,High
+P0036,Component 0036,Consumables,525.84,Low
+P0037,Component 0037,Automation,207.85,High
+P0038,Component 0038,Packaging,619.5,Low
+P0039,Component 0039,Mechanical,190.87,Low
+P0040,Component 0040,Cold Chain,336.0,Low
+P0041,Component 0041,Mechanical,168.24,Critical
+P0042,Component 0042,Mechanical,608.59,Low
+P0043,Component 0043,Packaging,109.08,Medium
+P0044,Component 0044,Mechanical,31.58,High
+P0045,Component 0045,Electrical,284.23,High
+P0046,Component 0046,Electrical,645.06,High
+P0047,Component 0047,Cold Chain,579.86,Critical
+P0048,Component 0048,Consumables,487.22,Medium
+P0049,Component 0049,Consumables,579.29,Critical
+P0050,Component 0050,Mechanical,581.01,Medium
+P0051,Component 0051,Automation,338.46,Critical
+P0052,Component 0052,Packaging,207.06,High
+P0053,Component 0053,Mechanical,502.38,High
+P0054,Component 0054,Packaging,430.93,Critical
+P0055,Component 0055,Mechanical,244.44,Critical
+P0056,Component 0056,Automation,63.67,Critical
+P0057,Component 0057,Mechanical,486.05,High
+P0058,Component 0058,Automation,172.44,Low
+P0059,Component 0059,Mechanical,609.09,Medium
+P0060,Component 0060,Cold Chain,158.53,Low
+P0061,Component 0061,Mechanical,81.99,Critical
+P0062,Component 0062,Electrical,540.65,Low
+P0063,Component 0063,Cold Chain,101.75,Low
+P0064,Component 0064,Automation,118.58,Low
+P0065,Component 0065,Electrical,390.6,High
+P0066,Component 0066,Cold Chain,568.78,High
+P0067,Component 0067,Electrical,129.69,Critical
+P0068,Component 0068,Cold Chain,203.43,Medium
+P0069,Component 0069,Cold Chain,505.87,Medium
+P0070,Component 0070,Mechanical,631.76,Low
+P0071,Component 0071,Cold Chain,326.73,Low
+P0072,Component 0072,Electrical,95.67,Medium
+P0073,Component 0073,Packaging,11.52,Critical
+P0074,Component 0074,Packaging,151.2,High
+P0075,Component 0075,Mechanical,87.85,Critical
+P0076,Component 0076,Automation,441.28,Low
+P0077,Component 0077,Packaging,81.39,Low
+P0078,Component 0078,Mechanical,330.35,Critical
+P0079,Component 0079,Cold Chain,452.03,Low
+P0080,Component 0080,Electrical,378.77,Low
+P0081,Component 0081,Cold Chain,131.85,Medium
+P0082,Component 0082,Electrical,523.17,Critical
+P0083,Component 0083,Cold Chain,465.73,High
+P0084,Component 0084,Consumables,480.99,Low
+P0085,Component 0085,Consumables,87.36,Critical
+P0086,Component 0086,Electrical,82.63,Critical
+P0087,Component 0087,Mechanical,603.1,Critical
+P0088,Component 0088,Automation,259.93,Critical
+P0089,Component 0089,Packaging,197.36,Low
+P0090,Component 0090,Cold Chain,318.86,Critical
+P0091,Component 0091,Mechanical,431.7,Medium
+P0092,Component 0092,Cold Chain,621.27,Critical
+P0093,Component 0093,Consumables,187.97,High
+P0094,Component 0094,Mechanical,601.31,Critical
+P0095,Component 0095,Electrical,18.6,High
+P0096,Component 0096,Consumables,361.99,High
+P0097,Component 0097,Packaging,413.0,High
+P0098,Component 0098,Consumables,71.07,Critical
+P0099,Component 0099,Packaging,93.37,High
+P0100,Component 0100,Consumables,273.88,Low
+P0101,Component 0101,Consumables,628.14,Critical
+P0102,Component 0102,Packaging,388.44,High
+P0103,Component 0103,Cold Chain,606.63,Medium
+P0104,Component 0104,Mechanical,523.32,High
+P0105,Component 0105,Cold Chain,305.13,Critical
+P0106,Component 0106,Packaging,510.63,Critical
+P0107,Component 0107,Electrical,14.05,Critical
+P0108,Component 0108,Mechanical,73.17,Medium
+P0109,Component 0109,Electrical,539.56,Critical
+P0110,Component 0110,Electrical,518.44,Medium
+P0111,Component 0111,Consumables,153.13,High
+P0112,Component 0112,Packaging,346.17,High
+P0113,Component 0113,Cold Chain,394.9,Low
+P0114,Component 0114,Packaging,564.36,Medium
+P0115,Component 0115,Electrical,393.01,Low
+P0116,Component 0116,Consumables,269.64,Low
+P0117,Component 0117,Cold Chain,244.78,Medium
+P0118,Component 0118,Electrical,278.26,Medium
+P0119,Component 0119,Electrical,424.63,Low
+P0120,Component 0120,Automation,564.2,Medium

@@ -1,6 +1,7 @@
 -- DATASET OVERVIEW
 -- Review the size, coverage and structure of the purchase
 -- order dataset before carrying out detailed data quality checks.
+
 SELECT COUNT(*) AS total_rows,
        COUNT(DISTINCT po_id) AS unique_purchase_orders,
        COUNT(DISTINCT supplier_id) AS unique_suppliers,
@@ -23,9 +24,10 @@ ORDER BY row_count DESC;
 --
 -- Order status consists of 16,712 Complete, 696 Open and
 -- 604 Partial records. These reconcile to the total row count.
---
--- The 49 supplier IDs require further investigation because
--- the supplier master contains 48 suppliers.
+
+-- The purchase-order data contains one more supplier ID than
+-- the supplier master, indicating an unmatched supplier reference.
+
 SELECT DISTINCT po.supplier_id
 FROM   purchase_orders AS po
        LEFT OUTER JOIN
@@ -41,8 +43,11 @@ WHERE  po.supplier_id IS NOT NULL
 -- Further investigation identified S999 as the unmatched supplier ID.
 -- 25 purchase order lines reference S999, but no corresponding
 -- supplier record exists in the supplier master.
+
+
 -- 01. DUPLICATE CHECK
 -- Check whether po_line_id contains duplicate records.
+
 SELECT   po_line_id,
          COUNT(*) AS duplicate_count
 FROM     purchase_orders
@@ -52,6 +57,7 @@ ORDER BY duplicate_count DESC;
 
 -- 02. MISSING SUPPLIER IDs
 -- Check for purchase order lines that do not contain a supplier ID.
+
 SELECT COUNT(*) AS missing_supplier_count
 FROM   purchase_orders
 WHERE  supplier_id IS NULL;
@@ -59,6 +65,7 @@ WHERE  supplier_id IS NULL;
 -- 03. ORPHAN SUPPLIER REFERENCES
 -- Check for supplier IDs in purchase_orders that do not match
 -- a record in the supplier master table.
+
 SELECT COUNT(*) AS orphan_supplier_count
 FROM   purchase_orders AS po
        LEFT OUTER JOIN
@@ -69,6 +76,7 @@ WHERE  s.supplier_id IS NULL
 
 -- 04. MISSING PART IDs
 -- Check for purchase order lines that do not contain a part ID.
+
 SELECT COUNT(*) AS missing_part_count
 FROM   purchase_orders
 WHERE  part_id IS NULL;
@@ -76,6 +84,7 @@ WHERE  part_id IS NULL;
 -- 05. ORPHAN PART REFERENCES
 -- Check for part IDs in purchase_orders that do not match
 -- a record in the parts master table.
+
 SELECT COUNT(*) AS orphan_part_count
 FROM   purchase_orders AS po
        LEFT OUTER JOIN
@@ -87,6 +96,7 @@ WHERE  p.part_id IS NULL
 -- 06. INVALID DATE SEQUENCES
 -- Check for records where delivery dates occur before the
 -- original order date.
+
 SELECT 'Promised Before Order' AS date_issue,
        COUNT(*) AS affected_rows
 FROM   purchase_orders
@@ -100,6 +110,7 @@ WHERE  received_date < order_date;
 -- 07. QUANTITY INTEGRITY CHECKS
 -- Check for invalid or unusual quantity values that may affect
 -- fulfilment and OTIF calculations.
+
 SELECT 'Non-Positive Quantity Ordered' AS quantity_issue,
        COUNT(*) AS affected_rows
 FROM   purchase_orders
@@ -118,6 +129,7 @@ WHERE  quantity_received > quantity_ordered;
 -- 08. MISSING CRITICAL DATES
 -- Check for missing dates required for order and delivery
 -- performance analysis.
+
 SELECT 'Missing Order Date' AS date_issue,
        COUNT(*) AS affected_rows
 FROM   purchase_orders
@@ -136,6 +148,7 @@ WHERE  received_date IS NULL;
 -- 09. DELIVERY STATUS RECONCILIATION
 -- Check that completed purchase order lines can be classified
 -- as either on time or late.
+
 SELECT COUNT(po_line_id) AS total_completed,
        SUM(CASE WHEN received_date <= promised_date THEN 1 ELSE 0 END) AS on_time_count,
        SUM(CASE WHEN received_date > promised_date THEN 1 ELSE 0 END) AS late_count,
@@ -151,6 +164,7 @@ WHERE  order_status = 'Complete';
 -- 10. DATA QUALITY SUMMARY
 -- Combine the main data quality issues into one summary table
 -- to provide an overall view of the issues identified.
+
 SELECT 'Missing Part ID' AS issue_type,
        COUNT(*) AS affected_rows
 FROM   purchase_orders
@@ -193,6 +207,7 @@ WHERE  quantity_received > quantity_ordered;
 -- 11. INVESTIGATE RECONCILIATION GAP
 -- Compare completed orders with missing delivery dates to
 -- understand why some records are neither on time nor late.
+
 SELECT SUM(CASE WHEN received_date <= promised_date THEN 1 ELSE 0 END) AS on_time,
        SUM(CASE WHEN received_date > promised_date THEN 1 ELSE 0 END) AS late,
        SUM(CASE WHEN received_date IS NULL THEN 1 ELSE 0 END) AS received_date_missing,
@@ -204,8 +219,9 @@ WHERE  order_status = 'Complete';
 -- The reconciliation gap is caused by completed order lines
 -- with a missing received_date.
 -- 12. REVIEW UNRECONCILED COMPLETED ORDERS
--- Return the affected records so they can be inspected before
--- deciding how they should be handled during cleaning.
+-- Review the completed order lines that could not be classified
+-- as either on time or late.
+
 SELECT po_line_id,
        po_id,
        order_status,

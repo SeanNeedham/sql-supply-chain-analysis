@@ -1,133 +1,147 @@
 # Procurement & Supplier Performance Analysis
 
-## Project Overview
+**SQL Server | 18,012 order lines | £1.54bn procurement spend | Jan 2025 – Aug 2026**
 
-This project uses SQL Server to analyse procurement activity, supplier performance and delivery reliability within a supply chain business.
+An end-to-end SQL investigation into supplier delivery reliability, isolating where OTIF performance breaks down and how much spend is exposed to it.
 
-The aim is to assess data quality, measure supplier delivery performance and identify areas of procurement exposure that may require further investigation.
+---
 
-The project follows an end-to-end SQL workflow covering data profiling, cleaning, validation, business analysis and final result reconciliation.
+## Executive Summary
 
-## Business Problem
+### The Problem
 
-The procurement and operations teams are concerned about supplier delivery reliability and potential supply chain risk. However, the specific suppliers, products or operational areas contributing to these issues are not yet known.
+Procurement and Operations suspected supplier delivery risk but could not name it. No one knew **which** suppliers, **which** products or **which** sites were driving the failures. Raw purchase order data carried missing IDs, unmatched references, impossible dates and duplicate rows — so no figure could be trusted as a starting point.
 
-The analysis uses the available purchase order data to identify performance patterns, assess supplier exposure and highlight areas for further investigation.
+### The Solution
 
-## Dataset
+A five-stage SQL Server workflow: profile, clean, validate, analyse, reconcile.
 
-The project uses four related datasets:
+- Cleaned IDs and eligibility flags were built into a **reusable `purchase_orders_clean` view**, leaving original values intact.
+- Records with issues were **flagged, not deleted** — each row was excluded only from the specific calculations it could distort.
+- Every headline figure was reconciled in a final validation pass before reporting.
 
-- `purchase_orders` – purchase order line-level transactional data
-- `suppliers` – supplier information, including region and agreed performance targets
-- `parts` – part and product information
-- `warehouses` – warehouse reference information
+### The Impact
 
-The purchase order dataset contains 18,012 rows across 6,000 purchase orders and covers the period from January 2025 to August 2026.
+- Narrowed a vague supply-risk concern down to **four named suppliers**.
+- Quantified the exposure: **£121.7m** of spend and **12.40%** of 2026 OTIF failures.
+- Pinpointed the break to a specific month — **January 2026** — giving the business a defined window to investigate.
 
-## Tools
+---
 
-- SQL Server
-- SQL Server Management Studio (SSMS)
-- GitHub
+## Key Operational Insights
 
-## Analysis Process
+**Overall OTIF is 37.37%.** Only **6,162 of 16,487** eligible completed order lines were delivered on time and in full.
 
-The project follows five stages:
-
-1. **Data profiling** – reviewed the datasets for missing values, duplicates, unmatched IDs, invalid dates and unusual quantities.
-2. **Data cleaning** – created a reusable SQL view containing cleaned IDs and analysis eligibility flags while retaining the original values.
-3. **Data validation** – confirmed row counts, duplicate handling, reference-table matches and procurement totals.
-4. **Business analysis** – analysed supplier spend, OTIF performance, monthly trends, warehouse performance and part-category exposure.
-5. **Final validation** – reconciled the headline results before reporting the findings.
-
-## Key Findings
-
-- The analysis covers **6,000 purchase orders**, **17,975 eligible order lines** and approximately **£1.54bn** in procurement spend.
-- Overall on-time, in-full delivery performance is **37.37%**, with 6,162 of 16,487 eligible completed order lines meeting OTIF.
-- **S027, S014, S041 and S006** have the four lowest supplier OTIF rates, ranging from **23.77% to 27.22%**.
-- These four suppliers account for approximately **£121.7m**, or **7.91%**, of total procurement spend.
-- They account for **12.40% of failed OTIF order lines in 2026**, which is higher than their share of spend.
-- Their OTIF performance drops sharply from January 2026.
-- Spend with these suppliers covers all six part categories, with the highest values in **Mechanical, Cold Chain and Electrical**.
-- Warehouse OTIF ranges from **35.91% to 38.25%**, suggesting that poor performance is not limited to one warehouse.
-
-### Supporting Results
-
-**Lowest supplier OTIF performance**
+### Four suppliers sit well below the rest
+**S027, S014, S041 and S006** hold the four lowest OTIF rates, ranging from **23.77% to 27.22%**.
 
 ![Lowest supplier OTIF results](images/lowest_supplier_otif.png)
 
-**Priority supplier spend**
+### Their failure share outweighs their spend share
+Together they represent **£121.7m — 7.91%** of total procurement spend, but **12.40%** of failed OTIF order lines in 2026. That gap is the reason they were prioritised: a supplier is only a problem worth escalating when it underperforms *relative to its size*.
 
 ![Priority supplier spend](images/priority_supplier_spend.png)
 
-**Priority suppliers' share of 2026 OTIF failures**
-
 ![Priority suppliers' share of OTIF failures](images/priority_supplier_failures.png)
 
-## Recommendations
+### The decline has a start date
+Performance across the four drops sharply from **January 2026** — a step change, not a gradual drift. Month-on-month analysis was used precisely to separate the two.
 
-- Review delivery performance with S006, S014, S027 and S041, focusing on the sharp decline from January 2026.
-- Give additional attention to Mechanical, Cold Chain and Electrical because these categories have the highest spend with the four suppliers.
-- Investigate whether any supplier, contract or operational changes occurred around January 2026.
-- Continue monitoring OTIF by supplier and month to identify whether performance improves.
-- Use additional supplier and operational data before deciding on the underlying causes or taking corrective action.
+### It is a supplier problem, not a site problem
+Warehouse OTIF ranges only from **35.91% to 38.25%**. Because the spread across sites is narrow while the spread across suppliers is wide, the failure is concentrated upstream.
 
-## Data Quality and Cleaning
+### Exposure spans the full category range
+Spend with the four suppliers covers **all six part categories**, weighted heaviest toward **Mechanical, Cold Chain and Electrical**.
 
-Data profiling identified several issues in the purchase order data:
+---
 
-- 25 records had a missing supplier ID.
-- 25 records referenced supplier S999, which was not present in the supplier master.
-- 25 records had a missing part ID.
-- 185 records had a received date before the order date.
-- 25 records had a missing received date.
-- 25 records had a non-positive ordered quantity.
-- 25 records had a received quantity greater than the ordered quantity.
-- 12 duplicate copies were identified.
+## Recommendations & Business Actions
 
-The original records were retained. Cleaned supplier and part IDs were created, and eligibility flags were added to control which records could be used in spend, quantity and delivery analysis.
+**1. Open a formal delivery review with S006, S014, S027 and S041.**
+Centre it on the sharp decline from January 2026 rather than on aggregate performance.
 
-After applying all three analysis checks, **17,765 records** were fully eligible. Spend analysis used **17,975 order lines** because a valid delivery date is not required to calculate procurement value.
+**2. Establish what changed in January 2026.**
+Check for supplier, contract or operational changes aligned to that month — the data shows the break but not the cause.
 
-## How to Run the Project
+**3. Prioritise Mechanical, Cold Chain and Electrical in that review.**
+These carry the highest spend with the four suppliers, so corrective action lands hardest here.
 
-1. Create a SQL Server database for the project.
-2. Import the four CSV files from `data/raw` into tables named:
-   - `purchase_orders`
-   - `suppliers`
-   - `parts`
-   - `warehouses`
-3. Run the SQL scripts in the following order:
+**4. Track OTIF by supplier and by month on an ongoing basis.**
+Monthly granularity is what surfaced the January step change; annual reporting would have hidden it.
 
-```text
-01_data_profiling.sql
-02_data_cleaning.sql
-03_data_validation.sql
-04_business_analysis.sql
-05_final_validation.sql
-```
+**5. Gather operational evidence before committing to corrective action.**
+Do not act on the delivery data alone.
 
-The cleaning script creates the `purchase_orders_clean` view used by the validation and analysis scripts.
+### What this analysis cannot tell you
+- It shows **when and where** OTIF declined, not **why**.
+- Root-cause work requires supplier communications, transport records, contract amendments and incident logs — none of which are in scope here.
+- OTIF is measured at **order-line level**. These figures are not the percentage of complete purchase orders delivered on time and in full.
 
-## SQL Skills Demonstrated
+---
 
-- Data profiling, cleaning and validation
+## The Dataset & Metrics
+
+Four related tables. **18,012 rows** across **6,000 purchase orders**.
+
+| Dataset | Contents |
+|---|---|
+| `purchase_orders` | Line-level transactional purchase data |
+| `suppliers` | Supplier detail, region, agreed performance targets |
+| `parts` | Part and product information |
+| `warehouses` | Warehouse reference data |
+
+**Metrics measured**
+
+- Procurement spend — by supplier, by part category
+- **OTIF rate** (on-time, in-full) — overall, by supplier, by warehouse, by month
+- Failed OTIF order lines and share of total failures
+- Month-on-month OTIF movement using `LAG()`
+- Supplier share of total spend vs share of failures
+
+**Data quality issues identified at profiling**
+
+| Issue | Records |
+|---|---|
+| Missing supplier ID | 25 |
+| Supplier `S999` — absent from supplier master | 25 |
+| Missing part ID | 25 |
+| Received date before order date | 185 |
+| Missing received date | 25 |
+| Non-positive ordered quantity | 25 |
+| Received quantity exceeds ordered quantity | 25 |
+| Duplicate copies | 12 |
+
+After all three eligibility checks, **17,765 records** were fully eligible. Spend analysis ran on **17,975 order lines**, because a valid delivery date is not required to calculate procurement value.
+
+---
+
+## Methodology & Technical Stack
+
+**Stack:** SQL Server · SQL Server Management Studio · GitHub
+
+### 1. Data Profiling — `01_data_profiling.sql`
+Scanned all four tables for missing values, duplicates, unmatched IDs, invalid date sequences and implausible quantities.
+
+### 2. Data Cleaning — `02_data_cleaning.sql`
+Built the `purchase_orders_clean` view holding cleaned supplier and part IDs alongside the originals, plus analysis eligibility flags controlling spend, quantity and delivery calculations independently.
+
+### 3. Data Validation — `03_data_validation.sql`
+Confirmed row counts, duplicate handling, reference-table match rates and procurement totals before any analysis ran.
+
+### 4. Business Analysis — `04_business_analysis.sql`
+Analysed supplier spend, OTIF performance, monthly trend, warehouse performance and part-category exposure.
+
+### 5. Final Validation — `05_final_validation.sql`
+Reconciled every headline figure against source totals prior to reporting.
+
+### SQL techniques applied
 - Joins and aggregate functions
 - `CASE` expressions and conditional aggregation
 - Common table expressions (CTEs)
-- Window functions, including `LAG()`
-- Trend analysis and result reconciliation
+- Window functions, including **`LAG()`** for month-on-month trend
+- Result reconciliation across stages
 
-## Limitations
-
-- The available data identifies when and where OTIF performance declined but does not explain the underlying cause.
-- Additional information, such as supplier communications, transport delays, contract changes and operational incidents, would be needed for root-cause analysis.
-- OTIF is measured at purchase order-line level, so the results do not represent the percentage of complete purchase orders delivered on time and in full.
-
-## Conclusion
-
-The analysis identified four suppliers with the lowest OTIF performance and a clear decline from January 2026. Together, these suppliers represent £121.7m in procurement spend and 12.40% of failed OTIF order lines in 2026.
-
-The findings support a focused supplier review, particularly across Mechanical, Cold Chain and Electrical. Further operational information would be required to understand the reasons for the decline and decide on appropriate action.
+### To run it
+1. Create a SQL Server database.
+2. Import the four CSVs from `data/raw` into `purchase_orders`, `suppliers`, `parts`, `warehouses`.
+3. Execute scripts `01` → `05` in order. The cleaning script creates the view the later scripts depend on.

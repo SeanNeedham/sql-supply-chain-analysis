@@ -48,9 +48,9 @@ The reusable `purchase_orders_clean` view retains original values alongside clea
 
 ## Executive Summary
 
-- Overall OTIF was 37.37%: 6,162 of 16,487 eligible completed order lines arrived on time and in full.
-- S027, S014, S041 and S006 had the four lowest supplier OTIF rates, from 23.77% to 27.22%. Together they accounted for £121.7m, or 7.91%, of total procurement spend and 12.40% of failed OTIF order lines in 2026.
-- Monthly OTIF for these four suppliers fell sharply from January 2026. The timing gives Procurement a defined period for investigation; the delivery data does not establish the cause.
+- Only 37.37% of eligible completed purchase-order lines arrived on time and in full: 6,162 of 16,487. This is a line-level measure, not the share of whole orders delivered successfully.
+- S027, S014, S041 and S006 had the weakest delivery results, from 23.77% to 27.22%. Together they supplied £121.7m of purchases and accounted for 12.40% of failed delivery lines in 2026. Their 7.91% share of total spend covers a longer period, so the two percentages should not be treated as directly comparable.
+- Performance for these four suppliers dropped sharply from January 2026. Procurement has a clear period to investigate, although the delivery records alone cannot explain what changed.
 
 ## Insights Deep Dive
 
@@ -74,14 +74,14 @@ Across the five warehouses, OTIF ranged from 35.91% to 38.25%. The narrow wareho
 
 ## Recommendations
 
-The data identifies where to investigate and what to monitor. Expected impacts are directional until operational evidence identifies causes and corrective actions are tested.
+The records show which deliveries need investigation. Any improvement would need to be confirmed after the cause is understood and changes are made.
 
-| Priority | Recommendation and evidence | Suggested owner | Expected impact | Metric to track |
+| Priority | What to do | Suggested owner | Intended result | What to check |
 |---|---|---|---|---|
-| 1 | Open a delivery review with S006, S014, S027 and S041. They have the four lowest OTIF rates and account for £121.7m of spend. Centre the review on the January 2026 decline. | Procurement and supplier relationship managers | Identify practical actions for the suppliers with the clearest delivery exposure. | Monthly supplier OTIF; late and incomplete line counts; spend with each supplier |
-| 2 | Establish what changed around January 2026. Review supplier communications, contract amendments, transport records and incident logs. | Procurement and Operations | Separate the observed timing from its underlying cause before committing to a remedy. | Monthly OTIF before and after any confirmed intervention |
-| 3 | Prioritise Mechanical, Cold Chain and Electrical within the review. These have the greatest spend with the four suppliers. | Category managers | Focus investigation where the commercial exposure is greatest. | Spend and OTIF by supplier and part category |
-| 4 | Report OTIF monthly by supplier and warehouse. The monthly view revealed the step change that aggregate reporting could obscure. | Procurement analytics and Operations | Detect deterioration earlier and check whether improvements persist. | Monthly supplier and warehouse OTIF; change in percentage points |
+| 1 | Meet with S006, S014, S027 and S041 about missed deliveries, starting with the sharp decline from January 2026. These suppliers have the weakest on-time, complete delivery results and account for £121.7m in purchases. | Procurement and supplier relationship managers | Agree practical steps with the suppliers most in need of review. | Monthly share of order lines arriving on time and complete; late and incomplete lines |
+| 2 | Review supplier messages, contract changes, transport records and incident logs from around January 2026. | Procurement and Operations | Find out what changed before choosing a remedy. | Delivery performance before and after any agreed change |
+| 3 | Give Mechanical, Cold Chain and Electrical parts priority in the review because they account for the most spending with these suppliers. | Category managers | Focus attention on the parts with the greatest purchasing exposure. | Purchasing value and missed deliveries by supplier and part category |
+| 4 | Review delivery results monthly for each supplier and warehouse. The monthly view revealed a change that an annual total could hide. | Procurement analytics and Operations | Spot deterioration sooner and see whether improvements last. | Monthly on-time, complete delivery rate by supplier and warehouse |
 
 ## Assumptions & Caveats
 
